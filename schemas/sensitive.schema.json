@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/sensitive.schema.json",
+  "title": "sensitive",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^st_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/alias"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/source"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "review": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/review"
+    },
+    "created_at": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/date"
+    },
+    "extensions": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/extensions"
+    },
+    "term": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/label"
+    },
+    "language": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/language"
+    },
+    "sense": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+      "maxLength": 80
+    },
+    "assessments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regions": {
+            "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/regions"
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "profanity",
+                "harassment",
+                "hate",
+                "sexual",
+                "violence",
+                "self_harm",
+                "regulated_goods",
+                "context_dependent"
+              ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "risk": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "context": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "regions",
+          "categories",
+          "risk",
+          "context"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "aliases",
+    "sources",
+    "review",
+    "created_at",
+    "updated_at",
+    "term",
+    "language",
+    "sense",
+    "assessments"
+  ]
+}

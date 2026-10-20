@@ -1,0 +1,32 @@
+name: Correction or removal / 修改、纠错或删除
+description: Correct a record, request removal, or dispute inclusion.
+title: "[Correction] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not repeat private information or attach identity documents. Refer to the record ID.
+        不要重复披露隐私或上传身份证明；请使用词条 ID 定位。
+  - type: input
+    id: record
+    attributes:
+      label: Record ID or path / 词条 ID 或路径
+    validations:
+      required: true
+  - type: dropdown
+    id: action
+    attributes:
+      label: Requested action / 申请类型
+      options:
+        - Modify / 修改
+        - Correct / 纠错
+        - Remove / 删除
+        - Dispute / 争议
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason, evidence and proposed change / 理由、依据与建议修改
+    validations:
+      required: true

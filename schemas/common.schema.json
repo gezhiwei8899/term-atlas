@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json",
+  "title": "common",
+  "$defs": {
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    },
+    "language": {
+      "enum": [
+        "zh",
+        "zh-Hans",
+        "zh-Hant",
+        "en"
+      ]
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(?:001|[A-Z]{2})$"
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "if": {
+        "contains": {
+          "const": "001"
+        }
+      },
+      "then": {
+        "maxItems": 1
+      }
+    },
+    "alias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/label"
+        },
+        "language": {
+          "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/language"
+        },
+        "kind": {
+          "enum": [
+            "alias",
+            "abbreviation",
+            "variant"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "language",
+        "kind"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^\\s]+$",
+          "maxLength": 2048
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "accessed_at": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "rights": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "basis": {
+              "enum": [
+                "fact_reference",
+                "cc0",
+                "permission",
+                "unresolved"
+              ]
+            },
+            "note": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "\\S"
+            },
+            "evidence_url": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://[^\\s]+$",
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "basis",
+            "note"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "basis": {
+                    "enum": [
+                      "cc0",
+                      "permission"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "evidence_url"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "url",
+        "title",
+        "accessed_at",
+        "rights"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "approved",
+            "deprecated"
+          ]
+        },
+        "reviewed_by": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "reviewed_at": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "approved",
+                  "deprecated"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "reviewed_by",
+              "reviewed_at",
+              "note"
+            ]
+          }
+        }
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Namespaced metadata; never overrides core fields.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9_-]*:[a-z][a-z0-9_.-]*$"
+      }
+    }
+  }
+}

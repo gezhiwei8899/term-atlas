@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "term-atlas"
+version = "0.1.0"
+description = "An open bilingual lexicon of sensitive terms and notable named entities."
+readme = "README_EN.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = ["jsonschema>=4.23,<5", "referencing>=0.35,<1"]
+
+[project.urls]
+Repository = "https://github.com/gezhiwei8899/term-atlas"
+Issues = "https://github.com/gezhiwei8899/term-atlas/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "ruff>=0.11,<1"]
+
+[tool.setuptools]
+packages = ["scripts"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

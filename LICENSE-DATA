@@ -1,0 +1,25 @@
+TermAtlas data licensing / 数据许可
+
+To the extent they hold the relevant rights, TermAtlas contributors dedicate
+their original data contributions and database arrangement in data/, pending/,
+examples/data/ and tests/fixtures/ under CC0 1.0 Universal:
+
+https://creativecommons.org/publicdomain/zero/1.0/
+Full legal text: LICENSES/CC0-1.0.txt
+
+Code, JSON Schemas and documentation are licensed under MIT (LICENSE).
+
+This dedication covers only rights held by the contributors. It does not
+relicense third-party websites, datasets, names, trademarks or other material.
+Source citations identify evidence, not permission. Each source records a
+reuse basis and, where applicable, permission evidence. Pending records have
+not been verified and must not be treated as cleared for redistribution.
+
+No existing third-party dataset is imported by this initialization.
+No privacy, publicity or trademark rights are granted by this notice.
+
+在贡献者拥有相关权利的范围内，其原创数据和数据库编排按 CC0 1.0 贡献。
+代码、JSON Schema 和文档采用 MIT。来源链接不是复制授权，不代表第三方
+网站或数据集被重新许可。待审核记录尚未完成权利核验，不应作为已获授权
+的数据再分发。本次初始化未导入任何第三方数据集；本说明不授予隐私、
+肖像、姓名或商标相关权利。完整条款以上述法律文本为准。

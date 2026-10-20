@@ -1,0 +1,28 @@
+name: Named entity / 知名实体提案
+description: Propose a verifiable public person, company or organization.
+title: "[Entity] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Named entities are independent of sensitive terms. No allegations or private information.
+        实体库独立于敏感词库，不接受无依据指控或非公开个人资料。
+  - type: textarea
+    id: names
+    attributes:
+      label: Entity type, names and aliases / 实体类型、中英文名称及别名
+      description: Leave unverified translations out; do not invent an English or Chinese name.
+    validations:
+      required: true
+  - type: textarea
+    id: identity
+    attributes:
+      label: Public notability and disambiguation / 公开知名性与同名区分
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources and reuse basis / 公开来源及再利用依据
+    validations:
+      required: true

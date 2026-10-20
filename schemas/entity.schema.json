@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/entity.schema.json",
+  "title": "entity",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^ne_[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/alias"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/source"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "review": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/review"
+    },
+    "created_at": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/date"
+    },
+    "updated_at": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/date"
+    },
+    "extensions": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/extensions"
+    },
+    "entity_type": {
+      "enum": [
+        "person",
+        "company",
+        "organization"
+      ]
+    },
+    "names": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "zh": {
+          "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/label"
+        },
+        "en": {
+          "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/label"
+        }
+      },
+      "required": [],
+      "minProperties": 1
+    },
+    "disambiguation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "pattern": "\\S"
+    },
+    "regions": {
+      "$ref": "https://raw.githubusercontent.com/gezhiwei8899/term-atlas/main/schemas/common.schema.json#/$defs/regions"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "aliases",
+    "sources",
+    "review",
+    "created_at",
+    "updated_at",
+    "entity_type",
+    "names",
+    "disambiguation",
+    "regions"
+  ]
+}

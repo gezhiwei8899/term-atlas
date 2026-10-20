@@ -1,0 +1,36 @@
+name: Sensitive term / 敏感词提案
+description: Propose a contextual term with sources; no unsupported labels.
+title: "[Sensitive] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not post non-public personal information. Inclusion is contextual, not a universal ban.
+        不要提交非公开个人信息；不得仅因人物或机构身份、观点进行敏感定性。
+  - type: textarea
+    id: term
+    attributes:
+      label: Term, language, aliases / 词条、语言、别名
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Sense, regions, categories, risk and counterexamples / 语义、地区、分类、风险及反例
+      description: Explain when the term applies and when it does not.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources and reuse basis / 公开来源及再利用依据
+      description: Include exact URLs, access dates, and permission evidence for copied material.
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Contribution / 贡献确认
+      options:
+        - label: I checked existing entries and have not copied an unlicensed dataset. / 已查重，未复制授权不明的数据集。
+          required: true
